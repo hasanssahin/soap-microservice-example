@@ -1,0 +1,56 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.hasansahin.com/discount" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.hasansahin.com/discount" targetNamespace="http://www.hasansahin.com/discount">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.hasansahin.com/discount">
+            <xs:element name="DiscountRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="code" type="xs:string"/>
+                        <xs:element name="price" type="xs:float"/>
+                        <xs:element name="categoryUuid" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="code" type="xs:string"/>
+                        <xs:element name="newPrice" type="xs:float"/>
+                        <xs:element name="oldPrice" type="xs:float"/>
+                        <xs:element name="appliedDiscount" type="xs:float"/>
+                        <xs:element name="result" type="xs:boolean"/>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="DiscountRequest">
+        <wsdl:part element="tns:DiscountRequest" name="DiscountRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DiscountResponse">
+        <wsdl:part element="tns:DiscountResponse" name="DiscountResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="DiscountPort">
+        <wsdl:operation name="Discount">
+            <wsdl:input message="tns:DiscountRequest" name="DiscountRequest"> </wsdl:input>
+            <wsdl:output message="tns:DiscountResponse" name="DiscountResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DiscountPortSoap11" type="tns:DiscountPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Discount">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="DiscountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="DiscountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DiscountPortService">
+        <wsdl:port binding="tns:DiscountPortSoap11" name="DiscountPortSoap11">
+            <soap:address location="http://localhost:8081/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

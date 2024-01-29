@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.hasansahin.com/discount"
+           xmlns:tns="http://www.hasansahin.com/discount"
+           elementFormDefault="qualified">
+    <xs:element name="DiscountRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="code" type="xs:string"/>
+                <xs:element name="price" type="xs:float"/>
+                <xs:element name="categoryUuid" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DiscountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="code" type="xs:string"/>
+                <xs:element name="newPrice" type="xs:float"/>
+                <xs:element name="oldPrice" type="xs:float"/>
+                <xs:element name="appliedDiscount" type="xs:float"/>
+                <xs:element name="result" type="xs:boolean"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
